@@ -1,0 +1,7 @@
+Version 1 2013/9/24: 
+================================= 
+- Block Design completed 
+- Completion of background management interface modules 
+================================= 
+Version 2 2013/9/27: 
+- Interface landscaping 
