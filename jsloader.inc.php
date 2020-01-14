@@ -31,14 +31,14 @@ class jsloader{
 		if(self::$useJquery==false){
 		self::$useJquery=true;
 		//js檢查
-		$jquery=<<<useJqueryJS
-         if(typeof jQuery == "undefined"){ 
-         var js = document.createElement("script"); 
-         js.type = "text/javascript";
-         js.src = "{$js_folder}jquery.min.js"; 
-         document.getElementsByTagName("head")[0].appendChild(js); 
-        }
-useJqueryJS;
+		$jquery="
+			 if(typeof jQuery == 'undefined'){ 
+			 var js = document.createElement('script'); 
+			 js.type = 'text/javascript';
+			 js.src = '".$js_folder."jquery.min.js'; 
+			 document.getElementsByTagName('head')[0].appendChild(js); 
+			}
+		";
 		return addJava($jquery);
 		}
 	}
@@ -51,14 +51,14 @@ useJqueryJS;
 		//載入jquery
 		$return.=self::useJquery();
 		//js檢查
-		$jquery=<<<useJqueryTools
-         if(typeof jQuery.tools == "undefined"){ 
-         var jst = document.createElement("script"); 
-         jst.type = "text/javascript";
-         jst.src = "{$js_folder}jquery.tools.min.js"; 
-         document.getElementsByTagName("head")[0].appendChild(jst); 
+		$jquery="
+         if(typeof jQuery.tools == 'undefined'){ 
+         var jst = document.createElement('script'); 
+         jst.type = 'text/javascript';
+         jst.src = '".$js_folder."jquery.tools.min.js'; 
+         document.getElementsByTagName('head')[0].appendChild(jst); 
         }
-useJqueryTools;
+";
 		$return.=addJava($jquery);
 		return $return;
 		}
@@ -73,14 +73,14 @@ useJqueryTools;
 		//載入jquery
 		$return.=self::useJquery();
 		//js檢查
-		$jqueryui=<<<useJqueryUI
-         if(typeof jQuery.ui == "undefined"){ 
-         var jsu = document.createElement("script"); 
-         jsu.type = "text/javascript";
-         jsu.src = "{$js_folder}jquery-ui.min.js"; 
-         document.getElementsByTagName("head")[0].appendChild(jsu); 
+		$jqueryui="
+         if(typeof jQuery.ui == 'undefined'){ 
+         var jsu = document.createElement('script'); 
+         jsu.type = 'text/javascript';
+         jsu.src = '".$js_folder."jquery-ui.min.js'; 
+         document.getElementsByTagName('head')[0].appendChild(jsu); 
         }
-useJqueryUI;
+";
 		$return.=addJava($jqueryui);
 		return "<link rel='stylesheet' href='{$css_folder}jquery-ui.min.css' />".$return;
 		}
@@ -95,14 +95,14 @@ useJqueryUI;
 			//載入jquery
 			$return.=self::useJquery();
 			//js檢查
-$bootstrap=<<<useBootstrap
-		 if(typeof bootstrap == "undefined"){ 
-			var jsb = document.createElement("script");
-			jsb.type = "text/javascript";
-			jsb.src = "{$js_folder}bootstrap.min.js"; 
-			document.getElementsByTagName("head")[0].appendChild(jsb); 
+$bootstrap="
+		 if(typeof bootstrap == 'undefined'){ 
+			var jsb = document.createElement('script');
+			jsb.type = 'text/javascript';
+			jsb.src = '".$js_folder."bootstrap.min.js'; 
+			document.getElementsByTagName('head')[0].appendChild(jsb); 
         }
-useBootstrap;
+";
 		return "<link href='{$css_folder}bootstrap.min.css' rel='stylesheet' media='screen'>".
 				addJava($bootstrap);
 		}
@@ -117,14 +117,14 @@ useBootstrap;
 			//載入jquery
 			$return.=self::useJquery();
 			//js檢查
-$colorpicker=<<<useColorPicker
-		 if(typeof colorpicker == "undefined"){ 
-			var jsc = document.createElement("script");
-			jsc.type = "text/javascript";
-			jsc.src = "{$js_folder}spectrum.js"; 
-			document.getElementsByTagName("head")[0].appendChild(jsc); 
+$colorpicker="
+		 if(typeof colorpicker == 'undefined'){ 
+			var jsc = document.createElement('script');
+			jsc.type = 'text/javascript';
+			jsc.src = '".$js_folder."spectrum.js'; 
+			document.getElementsByTagName('head')[0].appendChild(jsc); 
         }
-useColorPicker;
+";
 		return "<link href='{$css_folder}spectrum.css' rel='stylesheet' media='screen'>".
 				addJava($colorpicker);
 		}

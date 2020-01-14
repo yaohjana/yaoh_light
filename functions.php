@@ -10,18 +10,20 @@ include_once('jsloader.inc.php');
 function useBootstrap(){
 $return=jsloader::useBootstrap();
 $return.=addJquery("
-$('#xo-toolbar .tooltip, #xo-footer  .tooltip, #xo-logo-head .tooltip').removeClass('tooltip').addClass('tooltipBootstrap');
-$('#xo-toolbar').css({
-'width':'300px',
-'float':'left'
-});
+	$('#xo-toolbar .tooltip, #xo-footer  .tooltip, #xo-logo-head .tooltip').removeClass('tooltip').addClass('tooltipBootstrap');
+	$('#xo-toolbar').css({
+		'width':'300px',
+		'float':'left'
+	});
 ");
 return $return;
 }
 function addCss($css){
-$return="<style type='text/css'>
-$css
-</style>";
+$return="
+	<style type='text/css'>
+		$css
+	</style>
+";
 return $return;
 }
 //產生index與value相同的陣列
@@ -42,10 +44,10 @@ function addJava($content,$src=null){
 	return "<script type='text/javascript'".(($src<>null)?"src=".$src:'').">".$content."</script>"; 
 }
 function addColorPicker($name){
-$return=<<<addjquery
-	var temp_color=$("[name=$name]").val();
-    $("[name=$name]").replaceWith("<input type='color' id='$name' name='$name' value="+temp_color+">");
-addjquery;
+$return="
+	var temp_color=$('[name=".$name."]').val();
+    $('[name=$name]').replaceWith('<input type=color id=".$name." name=".$name." value=+temp_color+>);
+";
 return $return;
 }
 //class marquee{
@@ -93,23 +95,23 @@ return $return;
 					{$row['light_content']}
 					{$light_link_txt_end}{$font_color_txt_end}</marquee>";
 		$css="
-		<style type='text/css'>
-		.{$pattern2}{
-		{$fontsize}
-		{$style_txt}
-		{$line_height}
-		-webkit-transition:font-size {$trans_time}s, line-height {$trans_time}s;
-		-moz-transition:font-size {$trans_time}s, line-height {$trans_time}s;
-		-ms-transition:font-size {$trans_time}s, line-height {$trans_time}s;
-		}
-		.{$pattern2}:hover{
-		{$fontsize_hover}
-		cursor:pointer;
-		left:0px;
-		top:0px;
-		{$line_height_hover}
-		}
-		</style>
+			<style type='text/css'>
+			.{$pattern2}{
+			{$fontsize}
+			{$style_txt}
+			{$line_height}
+			-webkit-transition:font-size {$trans_time}s, line-height {$trans_time}s;
+			-moz-transition:font-size {$trans_time}s, line-height {$trans_time}s;
+			-ms-transition:font-size {$trans_time}s, line-height {$trans_time}s;
+			}
+			.{$pattern2}:hover{
+			{$fontsize_hover}
+			cursor:pointer;
+			left:0px;
+			top:0px;
+			{$line_height_hover}
+			}
+			</style>
 		";
 		return $css.$light;
 }
@@ -124,30 +126,30 @@ return false;
 
 public function addSlider($id,$ajax=true){
 $ajax_str=($ajax==true)?"sjfn('{$_SERVER['PHP_SELF']}?op=edit_do','preview','light_form');":"";
-$return =<<<slider
-  <script>
-  $(function() {
-    var select = $("#$id");
-	var optionsize=select.find("option").size();
-    var slider = $( "<div id='slider_$id'></div>" ).insertAfter( select ).slider({
-      min: 1,
-      max: optionsize,
-      range: "min",
-      value: select[ 0 ].selectedIndex + 1,
-      slide: function( event, ui ) {
-        select[ 0 ].selectedIndex = ui.value - 1;
-      },
-	  stop: function( event, ui){
-		{$ajax_str}
-	  }
-    });
-    $("#$id").change(function() {
-      slider.slider( "value", this.selectedIndex + 1 );
-		{$ajax_str}
-    });
-  });
-  </script>
-slider;
+$return ="
+		    <script>
+			$(function() {
+				var select = $('#".$id.");
+				var optionsize=select.find('option').size();
+				var slider = $('<div id=slider_".$id."></div>' ).insertAfter(select).slider({
+					min: 1,
+					max: optionsize,
+					range: 'min',
+					value: select[ 0 ].selectedIndex + 1,
+					slide: function( event, ui ) {
+						select[ 0 ].selectedIndex = ui.value - 1;
+					},
+					stop: function( event, ui){
+						".$ajax_str."}
+					}
+				});
+				$('#".$id."').change(function() {
+					slider.slider('value', this.selectedIndex + 1 );
+					".$ajax_str."}
+				});
+			});
+	    </script>
+";
 return $return;
 }
 }
